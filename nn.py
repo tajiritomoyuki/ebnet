@@ -65,7 +65,9 @@ def main():
         for i, model in enumerate(models):
             history = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=1, validation_split=0.2)
             h5path = os.path.join(modeldir, "%s_%s_%s_%s_%s.h5" % (conv1, conv2, conv3, kernel, i))
+            npzpath = os.path.join(modeldir, "%s_%s_%s_%s_%s.npz" % (conv1, conv2, conv3, kernel, i))
             model.save(h5path, include_optimizer=True)
+            np.savez(npzpath, loss=history.history["loss"], val_loss=history.history["val_loss"])
 
 if __name__ == '__main__':
     main()
