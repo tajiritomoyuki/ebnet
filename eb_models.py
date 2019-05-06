@@ -6,7 +6,7 @@ from keras.layers.convolutional import Conv1D, UpSampling1D
 from keras.optimizers import RMSprop
 
 #like EXONET-XS
-class Model1():
+class Model():
     model = Sequential()
     model.add(Conv1D(16, 5, activation="relu", padding="same", input_shape=(1024, 1)))
     model.add(MaxPooling1D(pool_size=2, strides=2))
@@ -17,9 +17,47 @@ class Model1():
     model.add(Dense(1, activation="sigmoid", input_dim=32))
     model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
+class Model1():
+    def __init__(conv1, conv2, conv3, kernel):
+        model = Sequential()
+        model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv3, kernel, activation="relu", padding="same"))
+        model.add(GlobalMaxPooling1D())
+        model.add(Dense(1, activation="sigmoid", input_dim=conv3))
+        model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+
+class Model2():
+    def __init__(conv1, conv2, conv3, conv4, kernel):
+        model = Sequential()
+        model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv3, kernel, activation="relu", padding="same"))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv4, kernel, activation="relu", padding="same"))
+        model.add(GlobalMaxPooling1D())
+        model.add(Dense(1, activation="sigmoid", input_dim=conv4))
+        model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+
+class Model3():
+    def __init__(conv1, conv2, conv3, kernel):
+        model = Sequential()
+        model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
+        model.add(MaxPooling1D(pool_size=2, strides=2))
+        model.add(Conv1D(conv3, kernel, activation="relu", padding="same"))
+        model.add(GlobalMaxPooling1D())
+        model.add(Dense(conv3, activation="relu", input_dim=conv3))
+        model.add(Dense(1, activation="sigmoid"))
+        model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
 #like EXONET
-class Model2():
+class Model9():
     model = Sequential()
     model.add(Conv1D(1, 5, padding="same", activation="relu", input_shape=(1024, 1)))
     model.add(Conv1D(16, 5, padding="same", activation="relu"))
