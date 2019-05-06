@@ -18,8 +18,8 @@ class Model():
     model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
 class Model1():
+    model = Sequential()
     def __init__(self, conv1, conv2, conv3, kernel):
-        model = Sequential()
         model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
         model.add(MaxPooling1D(pool_size=2, strides=2))
         model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
@@ -30,8 +30,8 @@ class Model1():
         model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
 class Model2():
+    model = Sequential()
     def __init__(self, conv1, conv2, conv3, conv4, kernel):
-        model = Sequential()
         model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
         model.add(MaxPooling1D(pool_size=2, strides=2))
         model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
@@ -44,8 +44,8 @@ class Model2():
         model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
 class Model3():
+    model = Sequential()
     def __init__(self, conv1, conv2, conv3, kernel):
-        model = Sequential()
         model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
         model.add(MaxPooling1D(pool_size=2, strides=2))
         model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
