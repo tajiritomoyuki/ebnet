@@ -10,7 +10,7 @@ import h5py
 
 from .settings import *
 
-csvname = ""
+csvname = "labeled.csv"
 
 def load_lc(path):
     """
