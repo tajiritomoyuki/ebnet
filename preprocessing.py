@@ -8,7 +8,7 @@ from itertools import product
 import multiprocessing as mp
 import h5py
 
-from .settings import *
+from settings import *
 
 def load_npz(npzpath):
     data = np.load(npzpath)
@@ -25,9 +25,9 @@ def make_dataset(arr, cut_len):
 
 def cut_dataset(arr, cut_len, left=True):
     if left:
-        return arr[:. :cut_len]
+        return arr[:, :cut_len]
     else:
-        return arr[:. -cut_len:]
+        return arr[:, -cut_len:]
 
 def reverse_data(arr):
     return arr[::-1]
