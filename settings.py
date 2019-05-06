@@ -1,8 +1,8 @@
 #coding:utf-8
 import os
 
-tessroot = ""
-datroot = ""
+tessroot = "/pike/pipeline"
+datroot = "/home/tajiri/tess/data"
 
 rootdir = os.path.abspath(os.path.dirname(__file__))
 CTLdir = os.path.join(tessroot, "step3")
