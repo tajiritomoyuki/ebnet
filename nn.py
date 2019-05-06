@@ -62,7 +62,7 @@ def main():
         models = [eb_models.Model1(conv1, conv2, conv3, kernel).model,
                   eb_models.Model2(conv1, conv2, conv3, 64, kernel).model,
                   eb_models.Model3(conv1, conv2, conv3, kernel).model]
-        for i, model in enumerate(model):
+        for i, model in enumerate(models):
             history = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=0, validation_split=0.2, callbacks=[TQDMNotebookCallback()])
             h5path = os.path.join(modeldir, "%s_%s_%s_%s_%s.h5" % (conv1, conv2, conv3, kernel, i))
             model.save(h5path, include_optimizer=True)
