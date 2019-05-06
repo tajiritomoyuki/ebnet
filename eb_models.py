@@ -56,6 +56,21 @@ class Model3():
         self.model.add(Dense(1, activation="sigmoid"))
         self.model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
+class Model4():
+    def __init__(self, conv1, conv2, conv3, conv4, kernel):
+        self.model = Sequential()
+        self.model.add(Conv1D(conv1, kernel, activation="relu", padding="same", input_shape=(1024, 1)))
+        self.model.add(MaxPooling1D(pool_size=2, strides=2))
+        self.model.add(Conv1D(conv2, kernel, activation="relu", padding="same"))
+        self.model.add(MaxPooling1D(pool_size=2, strides=2))
+        self.model.add(Conv1D(conv3, kernel, activation="relu", padding="same"))
+        self.model.add(MaxPooling1D(pool_size=2, strides=2))
+        self.model.add(Conv1D(conv4, kernel, activation="relu", padding="same"))
+        self.model.add(GlobalMaxPooling1D())
+        self.model.add(Dense(conv4, activation="relu", input_dim=conv4))
+        self.model.add(Dense(1, activation="sigmoid"))
+        self.model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+
 #like EXONET
 class Model9():
     model = Sequential()
