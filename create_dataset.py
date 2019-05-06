@@ -8,7 +8,7 @@ from itertools import product
 import multiprocessing as mp
 import h5py
 
-from .settings import *
+from settings import *
 
 csvname = "labeled.csv"
 
