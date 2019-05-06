@@ -3,7 +3,7 @@ import os
 
 tessroot = "/pike/pipeline"
 datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
-datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
+datroot = "/home/tajiri/tess/data"
 
 rootdir = os.path.abspath(os.path.dirname(__file__))
 CTLdir = os.path.join(tessroot, "step3")
