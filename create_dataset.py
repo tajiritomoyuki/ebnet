@@ -10,7 +10,7 @@ import h5py
 
 from settings import *
 
-csvname = "CTL4.csv"
+csvname = "CTL6.csv"
 
 def load_lc(path):
     """
