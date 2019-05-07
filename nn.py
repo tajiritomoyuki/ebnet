@@ -21,7 +21,7 @@ num_classes = 1
 epochs = 150
 cut_len = 1024
 
-def create_dataset():
+def create_train_dataset():
     data0_list = []
     data1_list = []
     for sector in [1, 2, 3, 5]:
@@ -43,7 +43,14 @@ def create_dataset():
     return data, label
 
 def main():
-    data, label = create_dataset()
+    train_data, train_label = create_train_dataset()
+    train_data = np.reshape(train_data, (train_data.shape[0], train_data.shape[1], 1))
+    train_label = np.reshape(train_label, (train_label.shape[0], 1))
+    model = eb_models.Model().model
+    history = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=1, validation_split=0.2)
+
+def try_network_model():
+    data, label = create_train_dataset()
     #分割
     x_train, x_test, y_train, y_test = train_test_split(data, label, test_size=0.2)
     #keras用にデータをreshape
