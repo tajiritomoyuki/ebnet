@@ -6,7 +6,7 @@ import glob
 from settings import *
 
 def main():
-    sector = 6
+    sector = 4
     h5list = glob.glob(os.path.join(CTLdir, "*_%s_?_?.h5" % sector))
     csvpath = os.path.join(csvdir, "CTL%s.csv" % sector)
     with open(csvpath, "w") as f:
