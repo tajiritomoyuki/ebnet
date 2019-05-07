@@ -10,11 +10,14 @@ class Model():
     model = Sequential()
     model.add(Conv1D(16, 5, activation="relu", padding="same", input_shape=(1024, 1)))
     model.add(MaxPooling1D(pool_size=2, strides=2))
-    model.add(Conv1D(16, 5, activation="relu", padding="same"))
-    model.add(MaxPooling1D(pool_size=2, strides=2))
     model.add(Conv1D(32, 5, activation="relu", padding="same"))
+    model.add(MaxPooling1D(pool_size=2, strides=2))
+    model.add(Conv1D(64, 5, activation="relu", padding="same"))
+    model.add(MaxPooling1D(pool_size=2, strides=2))
+    model.add(Conv1D(64, 5, activation="relu", padding="same"))
     model.add(GlobalMaxPooling1D())
-    model.add(Dense(1, activation="sigmoid", input_dim=32))
+    model.add(Dense(64, activation="relu", input_dim=64))
+    model.add(Dense(1, activation="sigmoid"))
     model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
 class Model1():

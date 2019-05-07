@@ -10,7 +10,7 @@ import h5py
 
 from settings import *
 
-csvname = "labeled.csv"
+csvname = "CTL4.csv"
 
 def load_lc(path):
     """
@@ -67,7 +67,8 @@ def main(csvpath):
                 lc_list.append(lc)
         lc_array = np.vstack(tuple(lc_list))
         #書き出し
-        dstpath = os.path.join(datdir, "test.npz")
+        csvname = os.path.splitext(os.path.basename(csvpath))[0]
+        dstpath = os.path.join(datdir, "%s.npz" % csvname)
         np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
