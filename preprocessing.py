@@ -33,14 +33,12 @@ def reverse_data(arr):
     return arr[::-1]
 
 def over_sampling(arr, cut_len, increase_rate):
-    num_data, lc_len = data.shape
-    diff = lc_len - cut_len
-    window_len = diff // increase_rate
+    num_data, lc_len = arr.shape
+    window_len = (lc_len - cut_len) // (increase_rate - 1)
     arr_list = []
     for i in range(increase_rate):
-        start = i * window_len
-        end = lc_len - (increase_rate - i + 1) * window_len
-        cut_arr = data[:, start : end]
+        cut_arr = arr[:, i*window_len : i*window_len+cut_len]
+        arr_list.append(cut_arr)
     increased_arr = np.vstack(tuple(arr_list))
     return increased_arr
 
