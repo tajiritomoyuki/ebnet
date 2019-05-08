@@ -32,6 +32,18 @@ def cut_dataset(arr, cut_len, left=True):
 def reverse_data(arr):
     return arr[::-1]
 
+def over_sampling(arr, cut_len, increase_rate):
+    num_data, lc_len = data.shape
+    diff = lc_len - cut_len
+    window_len = diff // increase_rate
+    arr_list = []
+    for i in range(increase_rate):
+        start = i * window_len
+        end = lc_len - (increase_rate - i + 1) * window_len
+        cut_arr = data[:, start : end]
+    increased_arr = np.vstack(tuple(arr_list))
+    return increased_arr
+
 def normalize(arr):
     mid = np.median(arr)
     std = np.std(arr)
