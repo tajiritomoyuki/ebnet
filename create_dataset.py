@@ -10,7 +10,7 @@ import h5py
 
 from settings import *
 
-csvname = "CTL4.csv"
+# csvname = "CTL4.csv"
 
 def load_lc(path):
     """
@@ -72,5 +72,7 @@ def main(csvpath):
         np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
-    csvpath = os.path.join(csvdir, csvname)
-    main(csvpath)
+    csvlist = ["CTL4.csv", "CTL6.csv", "CTL7.csv", "CTL8.csv"]
+    for csvname in csvlist:
+        csvpath = os.path.join(csvdir, csvname)
+        main(csvpath)
