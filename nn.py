@@ -65,7 +65,7 @@ def main():
     label1 = np.ones(data1.shape[0])
     train_data = np.vstack((data0, data1))
     train_label = np.hstack((label0, label1))
-    # x_train, x_test, y_train, y_test = train_test_split(train_data, train_label, test_size=0.2)
+    x_train, x_test, y_train, y_test = train_test_split(train_data, train_label, test_size=0.2)
     # x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
     # x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
     # y_train = np.reshape(y_train, (y_train.shape[0], 1))
