@@ -72,7 +72,7 @@ def main(csvpath):
         np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
-    csvlist = ["CTL4.csv", "CTL6.csv", "CTL7.csv", "CTL8.csv"]
+    csvlist = ["CTL1.csv", "CTL2.csv", "CTL3.csv", "CTL5.csv"]
     for csvname in csvlist:
         csvpath = os.path.join(csvdir, csvname)
         main(csvpath)
