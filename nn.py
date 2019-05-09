@@ -19,7 +19,7 @@ import preprocessing
 batch_size = 128
 num_classes = 1
 epochs = 150
-cut_len = 1024
+cut_len = 968
 
 def create_train_dataset():
     data0_list = []
@@ -74,10 +74,10 @@ def main():
     train_label = np.reshape(train_label, (train_label.shape[0], 1))
     model = eb_models.Model().model
     history = model.fit(train_data, train_label, batch_size=batch_size, epochs=epochs, verbose=1, validation_split=0.2)
-    score = model.evaluate(x_test, y_test, verbose=0)
-    print('Test loss:', score[0])
-    print('Test accuracy:', score[1])
-    h5path = os.path.join(modeldir, "model.h5")
+    # score = model.evaluate(x_test, y_test, verbose=0)
+    # print('Test loss:', score[0])
+    # print('Test accuracy:', score[1])
+    # h5path = os.path.join(modeldir, "model.h5")
     npzpath = os.path.join(modeldir, "model.npz")
     model.save(h5path, include_optimizer=True)
     np.savez(npzpath, loss=history.history["loss"], val_loss=history.history["val_loss"])
