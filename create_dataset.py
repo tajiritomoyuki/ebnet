@@ -35,31 +35,16 @@ def load_lc(path):
         lc_interp[quality] = np.interp(x(quality), x(~quality), lc_interp[~quality])
     return lc_interp
 
-def main(csvpath):
+def create_train(csvpath):
     df = pd.read_csv(csvpath)
     f_sector = lambda x: int(x.split("_")[2])
     sector_df = df["path"].map(f_sector)
     df["sector"] = sector_df
-    #カラム数が2と3の場合で分ける
-    #3の場合は訓練データ
-    if len(df.columns) == 3:
-        sectors = sector_df.unique()
-        labels = df["label"].unique()
-        for label, sector in product(labels, sectors):
-            tar_df = df[(df["sector"] == sector) & (df["label"] == label)]
-            path_list = tar_df["path"].values
-            lc_list = []
-            #読み込み
-            with mp.Pool(mp.cpu_count()) as p:
-                for lc in p.imap(load_lc, tqdm(path_list)):
-                    lc_list.append(lc)
-            lc_array = np.vstack(tuple(lc_list))
-            #書き出し
-            dstpath = os.path.join(datdir, "%s_%s.npz" % (sector, label))
-            np.savez(dstpath, data=lc_array)
-    #2の場合はテストデータ
-    elif len(df.columns) == 2:
-        path_list = df["path"].values
+    sectors = sector_df.unique()
+    labels = df["label"].unique()
+    for label, sector in product(labels, sectors):
+        tar_df = df[(df["sector"] == sector) & (df["label"] == label)]
+        path_list = tar_df["path"].values
         lc_list = []
         #読み込み
         with mp.Pool(mp.cpu_count()) as p:
@@ -67,9 +52,25 @@ def main(csvpath):
                 lc_list.append(lc)
         lc_array = np.vstack(tuple(lc_list))
         #書き出し
-        csvname = os.path.splitext(os.path.basename(csvpath))[0]
-        dstpath = os.path.join(datdir, "%s.npz" % csvname)
-        np.savez(dstpath, data=lc_array, path=path_list)
+        dstpath = os.path.join(datdir, "%s_%s.npz" % (sector, label))
+        np.savez(dstpath, data=lc_array)
+
+def create_test(csvpath):
+    df = pd.read_csv(csvpath)
+    f_sector = lambda x: int(x.split("_")[2])
+    sector_df = df["path"].map(f_sector)
+    df["sector"] = sector_df
+    path_list = df["path"].values
+    lc_list = []
+    #読み込み
+    with mp.Pool(mp.cpu_count()) as p:
+        for lc in p.imap(load_lc, tqdm(path_list)):
+            lc_list.append(lc)
+    lc_array = np.vstack(tuple(lc_list))
+    #書き出し
+    csvname = os.path.splitext(os.path.basename(csvpath))[0]
+    dstpath = os.path.join(datdir, "%s.npz" % csvname)
+    np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
     csvlist = ["CTL1.csv", "CTL2.csv", "CTL3.csv", "CTL5.csv"]
