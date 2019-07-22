@@ -19,12 +19,12 @@ import preprocessing
 batch_size = 128
 num_classes = 1
 epochs = 150
-cut_len = 968
+cut_len = 950
 
 def create_train_dataset():
     data0_list = []
     data1_list = []
-    for sector in [1, 2, 3, 5]:
+    for sector in [1, 2, 3, 4, 5, 6]:
         npzpath0 = os.path.join(datdir, "%s_0.npz" % sector)
         npzpath1 = os.path.join(datdir, "%s_1.npz" % sector)
         data1 = load_npz(npzpath1)
@@ -45,7 +45,7 @@ def create_train_dataset():
 def main():
     #0データ
     data0_list = []
-    for sector in [1, 2, 3, 5]:
+    for sector in [1, 2, 3, 4, 5, 6]:
         npzpath = os.path.join(datdir, "%s_0.npz" % sector)
         data = preprocessing.load_npz(npzpath)
         data = preprocessing.cut_dataset(data, cut_len)
@@ -53,14 +53,15 @@ def main():
     data0 = np.vstack(tuple(data0_list))
     #1データ
     data1_list = []
-    for sector in [1, 2, 3, 5]:
+    for sector in [1, 2, 3, 4, 5, 6]:
         npzpath = os.path.join(datdir, "%s_1.npz" % sector)
         data = preprocessing.load_npz(npzpath)
         data_rev = preprocessing.reverse_data(data)
-        data = preprocessing.over_sampling(data, cut_len, 5)
-        data_rev = preprocessing.over_sampling(data_rev, cut_len, 5)
+        data = preprocessing.over_sampling(data, cut_len, 2)
+        data_rev = preprocessing.over_sampling(data_rev, cut_len, 2)
         data1_list.extend([data, data_rev])
     data1 = np.vstack(tuple(data1_list))
+    print(data0.shape, data1.shape)
     label0 = np.zeros(data0.shape[0])
     label1 = np.ones(data1.shape[0])
     train_data = np.vstack((data0, data1))

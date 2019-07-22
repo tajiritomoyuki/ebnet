@@ -24,7 +24,7 @@ cut_len = 950
 def main():
     #0データ
     data0_list = []
-    for sector in [1, 2, 3, 5]:
+    for sector in [1, 2, 3, 4, 5, 6]:
         npzpath = os.path.join(datdir, "%s_0.npz" % sector)
         data = preprocessing.load_npz(npzpath)
         data = preprocessing.cut_dataset(data, cut_len)
@@ -32,7 +32,7 @@ def main():
     data0 = np.vstack(tuple(data0_list))
     #1データ
     data1_list = []
-    for sector in [1, 2, 3, 5]:
+    for sector in [1, 2, 3, 4, 5, 6]:
         npzpath = os.path.join(datdir, "%s_1.npz" % sector)
         data = preprocessing.load_npz(npzpath)
         data_rev = preprocessing.reverse_data(data)

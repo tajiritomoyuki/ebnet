@@ -8,7 +8,7 @@ from keras.optimizers import RMSprop
 #like EXONET-XS
 class Model():
     model = Sequential()
-    model.add(Conv1D(16, 5, activation="relu", padding="same", input_shape=(1024, 1)))
+    model.add(Conv1D(16, 5, activation="relu", padding="same", input_shape=(950, 1)))
     model.add(MaxPooling1D(pool_size=2, strides=2))
     model.add(Conv1D(32, 5, activation="relu", padding="same"))
     model.add(MaxPooling1D(pool_size=2, strides=2))

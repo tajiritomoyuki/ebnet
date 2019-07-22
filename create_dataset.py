@@ -24,7 +24,7 @@ def load_lc(path):
         h5path = h5path2
     with h5py.File(h5path, "r") as f:
         flux = np.array(f["LC"]["SAP_FLUX"])
-        quality = np.array(f["LC"]["QUALITY"])
+        quality = np.array(f["TPF"]["QUALITY"])
         mid_val = np.nanmedian(flux)
         if mid_val == 0:
             lc = np.zeros_like(flux)
@@ -73,7 +73,7 @@ def create_test(csvpath):
     np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
-    csvlist = ["CTL1.csv", "CTL2.csv", "CTL3.csv", "CTL5.csv"]
+    csvlist = ["CTL1.csv", "CTL2.csv", "CTL3.csv", "CTL4.csv", "CTL5.csv", "CTL6.csv", "CTL7.csv", "CTL8.csv", "CTL9.csv", "CTL10.csv", "CTL11.csv"]
     for csvname in csvlist:
-        csvpath = os.path.join(csvdir, csvname)
-        main(csvpath)
+        csvpath = os.path.join(traincsvdir, csvname)
+        create_test(csvpath)
