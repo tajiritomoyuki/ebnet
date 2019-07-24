@@ -75,5 +75,5 @@ def create_test(csvpath):
 if __name__ == '__main__':
     csvlist = ["CTL1.csv", "CTL2.csv", "CTL3.csv", "CTL4.csv", "CTL5.csv", "CTL6.csv", "CTL7.csv", "CTL8.csv", "CTL9.csv", "CTL10.csv", "CTL11.csv"]
     for csvname in csvlist:
-        csvpath = os.path.join(traincsvdir, csvname)
+        csvpath = os.path.join(allcsvdir, csvname)
         create_test(csvpath)
