@@ -6,7 +6,7 @@ tessroot = "/manta/pipeline"
 tessroot = "/media/tomoyuki-tajiri/tempdir"
 # datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
 datroot = "/home/tomoyuki-tajiri/univ/tess/data"
-# datroot = "/home/tajiri/tess/data"
+datroot = "/home/tajiri/tess/data"
 
 rootdir = os.path.abspath(os.path.dirname(__file__))
 CTLdir = os.path.join(tessroot, "CTL2")
