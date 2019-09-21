@@ -15,6 +15,7 @@ import mpl_toolkits.axes_grid1
 from astropy.io import fits
 from astropy.coordinates import SkyCoord
 
+from settings import *
 from aperture_contour import draw_contours
 
 sql_data = {
@@ -41,6 +42,7 @@ class TinderLight():
         self.button_l = False
         self.button_d = False
         self.button_p = False
+        self.button_a = False
         self.connect()
 
     def connect(self):
@@ -88,6 +90,7 @@ class TinderLight():
         self.button_l = False
         self.button_d = False
         self.button_p = False
+        self.button_q = False
         self.f.flush()
         plt.close()
 
@@ -118,10 +121,13 @@ class TinderLight():
             self.cax.clear()
             self.button_p = True
             self.draw_img()
-        elif event.key == "d" and not self.button_d and self.check_connection():
+        if event.key == "d" and not self.button_d and self.check_connection():
             self.ax_text.clear()
             self.button_d = True
             self.write_header()
+        if event.key == "a" and not self.button_d and self.check_connection():
+            self.button_d = True
+            self.draw_all_lc()
         self.fig.canvas.draw()
 
     def load_params(self):
@@ -137,7 +143,7 @@ class TinderLight():
         #     self.connect()
         wcspath = os.path.join(wcsdir, "%s_%s_%s.pickle" % (self.sector, self.camera, self.chip))
         with open(wcspath, "rb") as f:
-            wcs = pickle.load(f)[0]
+            wcs = pickle.load(f)
         ra_max = self.ra + 0.03
         ra_min = self.ra - 0.03
         dec_max = self.dec + 0.03
@@ -229,16 +235,16 @@ def test():
 
 
 def main():
-    csvpath = os.path.join(csvdir, "1_exists.csv")
-    dstpath = os.path.join(VIdir, "123456.csv")
-    with open(csvpath, "r") as f:
+    csvpath = os.path.join(predcsvdir, "pred_12.csv")
+    dstpath = os.path.join(VIdir, "VI_12.csv")
+    with open(csvpath, "a") as f:
         reader = csv.reader(f)
-        for i in range(1000):
+        for i in range(3453):
             header = next(reader)
         TL = TinderLight(dstpath)
         for i, row in enumerate(reader):
-            print(i, row[0])
-            h5path = os.path.join(CTLdir, row[0])
+            print(i, row[1], row[2])
+            h5path = os.path.join(CTLdir, row[1])
             TL.set_data(h5path)
             TL.suggest()
 
