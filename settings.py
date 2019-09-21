@@ -2,7 +2,7 @@
 import os
 
 tessroot = "/manta/pipeline"
-# tessroot = "/stingray/pipeline"
+tessroot = "/stingray/pipeline"
 tessroot = "/media/tomoyuki-tajiri/tempdir"
 # datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
 datroot = "/home/tomoyuki-tajiri/univ/tess/data"
