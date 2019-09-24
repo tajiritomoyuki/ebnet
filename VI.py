@@ -235,12 +235,12 @@ def test():
 
 
 def main():
-    csvpath = os.path.join(predcsvdir, "pred_12.csv")
-    dstpath = os.path.join(VIdir, "VI_12.csv")
-    with open(csvpath, "a") as f:
+    csvpath = os.path.join(predcsvdir, "pred_13.csv")
+    dstpath = os.path.join(VIdir, "VI_13.csv")
+    with open(csvpath, "r") as f:
         reader = csv.reader(f)
-        for i in range(3453):
-            header = next(reader)
+        # for i in range(3453):
+        header = next(reader)
         TL = TinderLight(dstpath)
         for i, row in enumerate(reader):
             print(i, row[1], row[2])

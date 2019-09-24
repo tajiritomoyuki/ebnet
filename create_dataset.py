@@ -25,6 +25,9 @@ def load_lc(path):
     with h5py.File(h5path, "r") as f:
         flux = np.array(f["LC"]["SAP_FLUX"])
         quality = np.array(f["TPF"]["QUALITY"])
+        quality1 = np.where(np.mod(quality, 2) >= 1, 1, 0)
+        quality4 = np.where(np.mod(quality, 8) >= 4, 1, 0)
+        qua = np.logical_and(quality1, quality4)
         mid_val = np.nanmedian(flux)
         if mid_val == 0:
             lc = np.zeros_like(flux)
@@ -32,7 +35,7 @@ def load_lc(path):
             lc = flux / mid_val
         lc_interp = np.copy(lc)
         x = lambda z: z.nonzero()[0]
-        lc_interp[quality] = np.interp(x(quality), x(~quality), lc_interp[~quality])
+        lc_interp[qua] = np.interp(x(qua), x(~qua), lc_interp[~qua])
     return lc_interp
 
 def create_train(csvpath):
