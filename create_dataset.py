@@ -27,7 +27,7 @@ def load_lc(path):
         quality = np.array(f["TPF"]["QUALITY"])
         quality1 = np.where(np.mod(quality, 2) >= 1, 1, 0)
         quality4 = np.where(np.mod(quality, 8) >= 4, 1, 0)
-        qua = np.logical_and(quality1, quality4)
+        qua = np.logical_or(quality1, quality4)
         mid_val = np.nanmedian(flux)
         if mid_val == 0:
             lc = np.zeros_like(flux)
