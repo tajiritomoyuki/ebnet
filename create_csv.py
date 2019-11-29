@@ -6,7 +6,7 @@ import glob
 from settings import *
 
 def main():
-    for sector in [13, 14, 15]:
+    for sector in [14, 15, 16]:
         h5list = glob.glob(os.path.join(CTLdir, "*_%s_?_?.h5" % sector))
         csvpath = os.path.join(allcsvdir, "CTL%s.csv" % sector)
         with open(csvpath, "w") as f:
