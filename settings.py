@@ -7,8 +7,8 @@ tessroot = "/stingray/pipeline"
 # datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
 # datroot = "/home/tomoyuki-tajiri/univ/tess/data"
 datroot = "/home/tajiri/tess/data"
-manta = "/manta/pipeline"
-stingray = "/stingray/pipeline"
+manta = "/manta/pipeline/CTL2"
+stingray = "/stingray/pipeline/CTL2"
 
 rootdir = os.path.abspath(os.path.dirname(__file__))
 CTLdir = os.path.join(tessroot, "CTL2")
