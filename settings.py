@@ -1,12 +1,14 @@
 #coding:utf-8
 import os
 
-tessroot = "/manta/pipeline"
-# tessroot = "/stingray/pipeline"
+# tessroot = "/manta/pipeline"
+tessroot = "/stingray/pipeline"
 # tessroot = "/media/tomoyuki-tajiri/tempdir"
 # datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
 # datroot = "/home/tomoyuki-tajiri/univ/tess/data"
 datroot = "/home/tajiri/tess/data"
+manta = "/manta/pipeline"
+stingray = "/stingray/pipeline"
 
 rootdir = os.path.abspath(os.path.dirname(__file__))
 CTLdir = os.path.join(tessroot, "CTL2")

@@ -16,8 +16,8 @@ def load_lc(path):
     """
     hdf5ファイルのpathを指定してlcデータを返す
     """
-    h5path1 = os.path.join(CTLdir, path)
-    h5path2 = os.path.join(TICdir, path)
+    h5path1 = os.path.join(manta, path)
+    h5path2 = os.path.join(stingray, path)
     if os.path.exists(h5path1):
         h5path = h5path1
     else:
@@ -76,7 +76,9 @@ def create_test(csvpath):
     np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
-    csvlist = ["CTL13.csv", "CTL14.csv", "CTL15.csv"]
-    for csvname in csvlist:
-        csvpath = os.path.join(allcsvdir, csvname)
-        create_test(csvpath)
+    # csvlist = ["CTL13.csv", "CTL14.csv", "CTL15.csv"]
+    # for csvname in csvlist:
+    #     csvpath = os.path.join(allcsvdir, csvname)
+    #     create_test(csvpath)
+    csvpath = os.path.join(traincsvdir, "train_new.csv")
+    create_train()
