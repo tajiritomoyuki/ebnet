@@ -1,8 +1,8 @@
 #coding:utf-8
 import os
 
-# tessroot = "/manta/pipeline"
-tessroot = "/stingray/pipeline"
+tessroot = "/manta/pipeline"
+# tessroot = "/stingray/pipeline"
 # tessroot = "/media/tomoyuki-tajiri/tempdir"
 # datroot = "C:\\Users\\tajiri\\Desktop\\tess\\data"
 # datroot = "/home/tomoyuki-tajiri/univ/tess/data"
