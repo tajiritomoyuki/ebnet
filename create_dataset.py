@@ -81,4 +81,4 @@ if __name__ == '__main__':
     #     csvpath = os.path.join(allcsvdir, csvname)
     #     create_test(csvpath)
     csvpath = os.path.join(traincsvdir, "train_new.csv")
-    create_train()
+    create_train(csvpath)
