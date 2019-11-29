@@ -84,7 +84,10 @@ class TinderLight():
             self.flux = np.array(ff["TPF"]["FLUX"])
             self.aperture = np.array(ff["APERTURE_MASK"]["FLUX"])
             self.aperture_bkg = np.array(ff["APERTURE_MASK"]["FLUX_BKG"])
-            self.lc = np.where(np.mod(self.quality, 2) == 1, np.nan, sap_flux)
+            qua1 = np.where(np.mod(self.quality, 2) >= 1, 1 ,0)
+            qua4 = np.where(np.mod(self.quality, 8) >= 4, 1 ,0)
+            qua = np.logical_or(qua1, qua4)
+            self.lc = np.where(qua, np.nan, sap_flux)
 
     def close_figure(self):
         self.button_l = False
@@ -235,11 +238,11 @@ def test():
 
 
 def main():
-    csvpath = os.path.join(predcsvdir, "pred_13.csv")
-    dstpath = os.path.join(VIdir, "VI_13.csv")
+    csvpath = os.path.join(predcsvdir, "pred_10.csv")
+    dstpath = os.path.join(VIdir, "VI_10.csv")
     with open(csvpath, "r") as f:
         reader = csv.reader(f)
-        # for i in range(3453):
+        # for i in range(2735):
         header = next(reader)
         TL = TinderLight(dstpath)
         for i, row in enumerate(reader):

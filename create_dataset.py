@@ -76,7 +76,7 @@ def create_test(csvpath):
     np.savez(dstpath, data=lc_array, path=path_list)
 
 if __name__ == '__main__':
-    csvlist = ["CTL9.csv", "CTL10.csv"]
+    csvlist = ["CTL13.csv", "CTL14.csv", "CTL15.csv"]
     for csvname in csvlist:
         csvpath = os.path.join(allcsvdir, csvname)
         create_test(csvpath)
